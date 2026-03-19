@@ -3,11 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page Title</title>
+    <title>Products</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Products</h1>
+    <div>
+        @if(session('success'))
+            <p>{{ session('success') }}</p>
+        @endif
+    </div>
     <div>
     <table border="1">
         <thead>
@@ -18,6 +23,7 @@
                 <th>Price</th>
                 <th>Description</th>
                 <th>Edit</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -31,6 +37,12 @@
                     <td>
                         <a href="{{ route('products.edit', ['product' => $product]) }}">Edit</a>
                     </td>
+                    <td>
+                        <form method="post" action="{{ route('products.destroy', ['product' => $product]) }}">
+                            @csrf
+                            @method('delete')
+                            <input type="submit" value="Delete">
+                        </form>
                 </tr>
             @endforeach
         </tbody>

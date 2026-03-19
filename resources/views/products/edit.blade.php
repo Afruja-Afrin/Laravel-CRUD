@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page Title</title>
+    <title>edit</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -19,29 +19,34 @@
             </ul>
         @endif
     </div>
-    <form method="POST" action="{{ route('products.store') }}">
-        @csrf
-        @method('post')
-        <div>
-            <label>Name:</label>
-            <input type="text" id="name" name="name" placeholder="Name" value="{{ $product->name }}">
-        </div>
-        <div>
-            <label>Quantity:</label>
-            <input type="text" id="quantity" name="quantity" placeholder="Quantity" value="{{ $product->quantity }}">
-        </div>
-        <div>
-            <label>Price:</label>
-            <input type="text" id="price" name="price" placeholder="Price" value="{{ $product->price }}">
-        </div>
-        <div>
-            <label>Description:</label>
-            <input type="text" id="description" name="description" placeholder="Description">
-        </div>
-        <div>
-            <input type="submit" value="Save a New Product">
-        </div>
-    </form>
+    <form method="POST" action="{{ route('products.update', ['product' => $product]) }}">
+    @csrf
+    @method('PUT')
+
+    <div>
+        <label>Name:</label>
+        <input type="text" name="name" value="{{ $product->name }}">
+    </div>
+
+    <div>
+        <label>Quantity:</label>
+        <input type="text" name="quantity" value="{{ $product->quantity }}">
+    </div>
+
+    <div>
+        <label>Price:</label>
+        <input type="text" name="price" value="{{ $product->price }}">
+    </div>
+
+    <div>
+        <label>Description:</label>
+        <input type="text" name="description" value="{{ $product->description }}">
+    </div>
+
+    <div>
+        <input type="submit" value="Update product">
+    </div>
+</form>
     <!-- Your content goes here -->
     <script src="script.js"></script>
 </body>
